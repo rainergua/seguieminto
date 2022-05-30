@@ -1,0 +1,115 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url("../img/fondo.png") no-repeat center center fixed #ededed !important;
+    background-size: cover!important;
+    z-index: -20;
+
+}
+main{
+    background-color: rgba(233, 236, 239, 0.75);
+}
+img{
+    display:block;
+    margin:auto;
+    padding: 3px;
+}
+label {
+    font-size: .9rem;
+    color: #272727;
+}
+h5 {
+    font-weight: bold;
+}
+span {
+    font-size: .8rem !important;
+}
+hr{
+    border: 1px solid #e2f2f1;
+}
+
+th, td{
+    border: 1px solid black;
+}
+.pie{
+    font-weight: bold;
+    font-size: .8rem !important;
+}
+tr.enc{font-weight: bold}
+
+nav.blue-minedu{
+	background-color: #6a6d70 !important;
+    font-size: 1rem !important;
+    color: #FFFFFF !important;
+    display: block !important;
+}
+.brand-logo{
+    background: transparent url(../img/logominedu.jpg);
+    background-size: cover;
+    float: left;
+    display: block;
+    text-indent: -999px;
+    height: 80px;
+    width: 300px;
+    margin: none;
+}
+.carousel-slider {
+    height: 400px !important;
+}
+.cajita {
+    background-color: #e2e2e2;
+    border: 1px solid #000000;
+    border-style: dotted;
+    padding: 5px;
+}
+.error {
+    color: #ff0000;
+    font-weight: bold;
+    padding:1px 20px 1px 5px;
+}
+.tabla{
+    font-size: .8rem !important;
+    border: 1px solid black;
+}
+span.card-title{
+    text-align: center;
+    display: block;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    color: #0969A8 !important;
+}
+.bolding{
+    font-weight: bold;
+}
+.rojo{
+    background-color: #ff0000;
+    color: #ffffff;
+}
+.amarillo{
+    background-color: #f6ff00;
+}
+.verde{
+    background-color: #007934;
+    color: #ffffff;
+}
+.card.small{
+    height: 220px;
+}
+img.imagen{
+    width: 100px;
+}
+img.imagen:hover {
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    box-shadow: 0px 0px 15px 15px #7f8284;
+    -webkit-box-shadow: 0px 0px 15px 15px #7f8284;
+}
+.texto-menu{
+    text-align: center;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 16px;
+    margin: 5px 0;
+}
+a{
+    color: #454B51;
+}
