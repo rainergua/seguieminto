@@ -106,9 +106,9 @@ class Login extends CI_Controller{
         $this->load->model('cuestionario_model');
         $rda = $this->session->userdata('id_usuario');
         $carnet = $this->session->userdata('username');
-        if($this->cuestionario_model->verifica($rda, $carnet)==0 && $this->session->userdata('perfil')!= 'a' &&  $this->session->userdata('perfil')!= 'd')
-            {//redirect(base_url().'cuestionario');
-            }
+        if($this->cuestionario_model->verifica($rda, $carnet)==0 && $this->session->userdata('perfil')!= 'a' &&  $this->session->userdata('perfil')!= 'd'){
+            //redirect(base_url().'cuestionario');
+        }
         $this->load->view('template/template');
         $this->load->view('dash_vw/ctrlpnl');
         $this->load->view('template/footer');

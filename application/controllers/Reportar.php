@@ -1,4 +1,7 @@
 <?php
+/***
+ * Controlador para manejo de reporte de Maestras y Maestros
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reportar extends CI_Controller{
@@ -12,7 +15,7 @@ class Reportar extends CI_Controller{
         if($this->session->userdata('is_logued_in') == FALSE)
         {
             $url= explode("/",$_SERVER["REQUEST_URI"]); //---- /seguimiento/cuestionario
-            print_r($url);
+            //print_r($url);
             if($url[2]=='reportar')
                 $this->session->set_userdata('url', $url[2]);
             //redirect(base_url().'login');
@@ -21,19 +24,25 @@ class Reportar extends CI_Controller{
     }
     public function envreporte(){
         $this->valido();
+        //echo ($_SERVER['DOCUMENT_ROOT'] ."/seguimiento/files/tmp/");
         $this->load->view('template/template');
         $this->load->view('sis_vw/reporte');
         $this->load->view('template/footer');
     }
-    public function base64Jpeg($fotobase64){
-        $file = md5(uniqid(rand(), true)) . ".{$this->session->userdata('id_usuario')}";
-        if (!is_dir($_SERVER['DOCUMENT_ROOT'] ."/../files/tmp/"))
+    private function base64Jpeg($fotobase64, $i){
+        $rda = $this->session->userdata('id_usuario');
+        $carnet = $this->session->userdata('username');
+        $file = $rda.'_'.$carnet.'_'.$i.'.jpg';
+        if (!is_dir ($_SERVER['DOCUMENT_ROOT'] ."/seguimiento/files/tmp/"))
             mkdir($_SERVER['DOCUMENT_ROOT'] . "/seguimiento/files/tmp/");
-        $ifp = fopen($_SERVER['DOCUMENT_ROOT'] ."/seguimiento/files/tmp/{$file}.jpg", 'wb');
+        $ifp = fopen($_SERVER['DOCUMENT_ROOT'] ."/seguimiento/files/tmp/".$file, 'wb');
         fwrite($ifp, base64_decode($fotobase64));
         fclose($ifp);
         return $file;
     }
+    /**
+     * Saca las imágenes de los reportes
+     */
     public function images(){
         $this->valido();
         if(empty($base = $_POST['base'])){
@@ -55,23 +64,23 @@ class Reportar extends CI_Controller{
                     'carnet' => $carnet,
                     'serie' => $serie,
                     'imagen' => $img,
-                    'archivo' => $this->base64Jpeg($img),
-                    'fecha' => date("d-m-Y H:i:s"),
-                    'hora' => date("d-m-Y H:i:s")
+                    'archivo' => $this->base64Jpeg($img, $i),
+                    'fecha' => date("Y-m-d H:i:s"),
+                    'hora' => date("Y-m-d H:i:s")
                 );
-                /*$resultado = $this->reporte_model->guardar($reporte);
+                $resultado = $this->reporte_model->guardar($reporte);
                 if($resultado){
                     $i++;
                 }else{
                     $this->index();
-                }*/
+                }
             }
         }
-        /*$data['images'] = $this->reporte_model->reportes($carnet);
+        $data['images'] = $this->reporte_model->reportes($carnet);
         $this->load->view('template/template');
         $this->load->view('sis_vw/edicion', $data);
-        $this->load->view('template/footer');*/
-        redirect(base_url().'login');
+        $this->load->view('template/footer');
+        //redirect(base_url().'login');
     }
     public function edicion(){
         $this->valido();
@@ -187,14 +196,14 @@ class Reportar extends CI_Controller{
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
         // QRCODE,H : QR-CODE Best error correction
         $style = array(
-    'border' => 1,
-    'vpadding' => 'auto',
-    'hpadding' => 'auto',
-    'fgcolor' => array(0,0,0),
-    'bgcolor' => false, //array(255,255,255)
-    'module_width' => 1, // width of a single module in points
-    'module_height' => 1 // height of a single module in points
-);
+        'border' => 1,
+        'vpadding' => 'auto',
+        'hpadding' => 'auto',
+        'fgcolor' => array(0,0,0),
+        'bgcolor' => false, //array(255,255,255)
+        'module_width' => 1, // width of a single module in points
+        'module_height' => 1 // height of a single module in points
+        );
         $codigo = $this->construyeCodigo();
         $pdf->write2DBarcode($codigo, 'QRCODE,H', 20, 210, 50, 50, $style, 'N');
         $pdf->Output("Comprbante.pdf", 'I');

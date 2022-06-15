@@ -7,7 +7,7 @@ class Reporte_model extends CI_Model{
     }
 
     public function guardar($reporte){
-        if($this->db->insert("reporte", $reporte)){
+        if($this->db->insert("reporte_copy", $reporte)){
 			return TRUE;
 		}else{
 			return FALSE;
@@ -30,15 +30,15 @@ class Reporte_model extends CI_Model{
     public function reportes($carnet){
         $this->db->select("codigo, imagen");
         $this->db->where('carnet', $carnet);
-        $this->db->where('archivo', 's');
+        $this->db->where('visible', 's');
         $this->db->order_by('codigo', 'desc');
-		$res = $this->db->get('reporte');
+		$res = $this->db->get('reporte_copy');
 		return $res->result();
     }
     public function borrar($id_foto){
-        $data =  array('archivo' => 'n');
+        $data =  array('visible' => 'n');
         $this->db->where('codigo', $id_foto);
-        $res = $this->db->update('reporte', $data);
+        $res = $this->db->update('reporte_copy', $data);
         return $res;
     }
     public function numReportes($carnet){

@@ -5,12 +5,12 @@
         foreach($images as $fila){
         ?>
         <div>
-          <div class="materialboxed-set col l4 m6 s12 center-align">
-              <div class="cajita" id="rep_gal">
-                  <img class="materialboxed" width="150" height="150" src="data:image/jpg;base64,<?php echo $fila->imagen;?>">
-                  <button type="button" name="button" class="btn red" id='<?php echo $fila->codigo;?>'>Eliminar</button>
-              </div>
-          </div>
+            <div class="materialboxed-set col l4 m6 s12 center-align">
+                <div class="cajita" id="rep_gal">
+                    <img class="materialboxed" width="150" height="150" src="<?php echo base_url().'files/tmp/'.$fila->archivo?>">
+                    <button type="button" name="button" class="btn red" id='<?php echo $fila->codigo;?>'>Eliminar</button>
+                </div>
+            </div>
         </div>
     <?php } ?>
     </div>

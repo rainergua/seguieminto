@@ -11,6 +11,7 @@ function inicio() {
     $("#btndepto").click(dataDeptoAdmin);
     $("#btndist").click(dataDistAdmin);
     $("#confirmar").click(enviaData);
+    //$(".elimina").click(dropImage);
     $("#img-modal").modal();
     $("#doc-modal").modal();
     $("#mymodal").modal();
@@ -206,7 +207,9 @@ function inicio() {
             });
 
 }
-
+function dropImage(){
+    console.log('Eliminando...'+this.id);
+}
 function enviaData(){
     //console.log($('form')[0]);
     $('form')[0].submit();

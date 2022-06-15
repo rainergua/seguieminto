@@ -22,7 +22,6 @@
     </div>
     <?php }
     ?>
-    <div class="col s12 m2 l2"></div>
 <?php
 $perfil = $this->session->userdata('perfil');
 switch ($perfil) {
@@ -68,6 +67,18 @@ switch ($perfil) {
         break;
 }
 ?>
+    <div class="col s12 m2 l2">
+        <a href="../reportar/envreporte"><img class="imagen" src="<?php echo base_url().'files/img/reportem.png'; ?>">
+        <div class="texto-menu">Reportar</div></a>
+    </div>
+    <div class="col s12 m2 l2">
+        <a href="../reportar/edicion"><img class="imagen" src="<?php echo base_url().'files/img/elirepm.png'?>">
+        <div class="texto-menu">Eliminar Imagen</div></a>
+    </div>
+    <div class="col s12 m2 l2">
+        <a href="<?php echo base_url().'listado/devdeptos'?>"><img class="imagen" src="<?php echo base_url().'files/img/seguimiento.png'?>">
+        <div class="texto-menu">Seguimiento</div></a>
+    </div>
     <div class="col s12 m2 l2">
         <a href="../cuestionario"><img class="imagen" src="<?php echo base_url().'files/img/cuestionario.png'?>">
         <div class="texto-menu">Cuestionario UCPD</div></a>
